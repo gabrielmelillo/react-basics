@@ -11,7 +11,7 @@ function App() {
       >
         <Toolbar>
           <Typography variant="h6" noWrap component="div">
-            Search
+            Game Search
           </Typography>
         </Toolbar>
       </AppBar>
