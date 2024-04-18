@@ -4,25 +4,19 @@ import {
   ThemeProvider,
   Toolbar,
   Typography,
-  createTheme,
 } from "@mui/material";
 import MenuDrawer from "./components/MenuDrawer";
-import { useState } from "react";
 import NavBar from "./components/NavBar";
+import useTheme from "./hooks/useTheme";
 
 function App() {
-  const [isDark, setIsDark] = useState(false);
-  const theme = createTheme({
-    palette: {
-      mode: isDark ? "dark" : "light",
-    },
-  });
+  const { themeSetting, handleTheme } = useTheme();
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={themeSetting}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <NavBar themeHandler={() => setIsDark(!isDark)} />
+        <NavBar themeHandler={handleTheme} />
         <MenuDrawer />
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <Toolbar />

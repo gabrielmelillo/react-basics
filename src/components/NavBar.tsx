@@ -27,7 +27,11 @@ export default function NavBar({ themeHandler }: Props) {
           </Typography>
         </Box>
         <FormControlLabel
-          control={<Switch />}
+          control={
+            <Switch
+              defaultChecked={localStorage.getItem("darkMode") === "true"}
+            />
+          }
           label="Dark Mode"
           onChange={themeHandler}
         />
