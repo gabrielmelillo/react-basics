@@ -10,23 +10,11 @@ import {
   ListSubheader,
   Toolbar,
 } from "@mui/material";
-import genreService, { Genre } from "./services/genre-service";
-import { useEffect, useState } from "react";
+import useGenres from "./hooks/useGenres";
 
 function MenuDrawer() {
   const drawerWidth = 240;
-  const [genres, setGenres] = useState<Genre[]>([]);
-
-  useEffect(() => {
-    genreService
-      .getGenres()
-      .then((res) => {
-        setGenres(res.data.results);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }, []);
+  const { genres } = useGenres();
 
   return (
     <Drawer
