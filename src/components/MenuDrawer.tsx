@@ -10,7 +10,7 @@ import {
   ListSubheader,
   Toolbar,
 } from "@mui/material";
-import useGenres from "./hooks/useGenres";
+import useGenres from "../hooks/useGenres";
 
 function MenuDrawer() {
   const drawerWidth = 240;

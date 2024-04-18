@@ -17,7 +17,6 @@ class GenreService {
   controller = new AbortController();
 
   getGenres() {
-    console.log(import.meta.env.VITE_RAWG_API_KEY);
     return apiClient.get<ApiResponse>(
       "/genres?key=" + import.meta.env.VITE_RAWG_API_KEY,
       {
