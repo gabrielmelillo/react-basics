@@ -1,9 +1,5 @@
 import apiClient from "./api-client";
 
-interface ApiResponse {
-  results: Genre[];
-}
-
 export interface Genre {
   id: number;
   name: string;
@@ -13,16 +9,15 @@ export interface Genre {
   description: string;
 }
 
+interface ApiResponse {
+  results: Genre[];
+}
+
 class GenreService {
   controller = new AbortController();
 
   getGenres() {
-    return apiClient.get<ApiResponse>(
-      "/genres?key=" + import.meta.env.VITE_RAWG_API_KEY,
-      {
-        signal: this.controller.signal,
-      }
-    );
+    return apiClient.get<ApiResponse>("/genres");
   }
 }
 

@@ -1,6 +1,10 @@
 import {
   Box,
+  Card,
+  CardContent,
+  CardMedia,
   CssBaseline,
+  Grid,
   ThemeProvider,
   Toolbar,
   Typography,
@@ -8,9 +12,11 @@ import {
 import MenuDrawer from "./components/MenuDrawer";
 import NavBar from "./components/NavBar";
 import useTheme from "./hooks/useTheme";
+import useGames from "./hooks/useGames";
 
 function App() {
   const { themeSetting, handleTheme } = useTheme();
+  const { games } = useGames();
 
   return (
     <ThemeProvider theme={themeSetting}>
@@ -20,7 +26,24 @@ function App() {
         <MenuDrawer />
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <Toolbar />
-          <Typography paragraph>Hello world</Typography>
+          <Grid container spacing={2}>
+            {games.map((game) => (
+              <Grid item xs={4} key={game.id}>
+                <Card>
+                  <CardMedia
+                    component="img"
+                    height="260"
+                    image={game.background_image}
+                  />
+                  <CardContent sx={{ height: 100 }}>
+                    <Typography gutterBottom variant="h5" component="div">
+                      {game.name}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
         </Box>
       </Box>
     </ThemeProvider>
