@@ -15,13 +15,19 @@ import {
   FaWindows,
   FaXbox,
 } from "react-icons/fa";
-import { SiMetacritic, SiNintendoswitch } from "react-icons/si";
+import { SiNintendoswitch } from "react-icons/si";
 
 interface Props {
   game: Game;
 }
 
 function GameCard({ game }: Props) {
+  const index = game.background_image.indexOf("/games");
+  const imgURL =
+    game.background_image.slice(0, index) +
+    "/crop/600/400/" +
+    game.background_image.slice(index);
+
   const iconMap: { [key: string]: JSX.Element } = {
     pc: <FaWindows />,
     playstation: <FaPlaystation />,
@@ -41,7 +47,7 @@ function GameCard({ game }: Props) {
 
   return (
     <Card>
-      <CardMedia component="img" height="260" image={game.background_image} />
+      <CardMedia component="img" height="260" image={imgURL} />
       <CardContent sx={{ height: "100%" }}>
         <Typography gutterBottom variant="h5" component="div">
           {game.name}
