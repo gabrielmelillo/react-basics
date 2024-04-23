@@ -25,7 +25,7 @@ function GameCard({ game }: Props) {
   const index = game.background_image.indexOf("/games");
   const imgURL =
     game.background_image.slice(0, index) +
-    "/crop/600/400/" +
+    "/crop/600/400" +
     game.background_image.slice(index);
 
   const iconMap: { [key: string]: JSX.Element } = {
