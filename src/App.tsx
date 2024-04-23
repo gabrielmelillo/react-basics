@@ -15,6 +15,8 @@ import GameCard from "./components/GameCard";
 function App() {
   const { themeSetting, handleTheme } = useTheme();
   const { games, isLoading } = useGames();
+  const skeletons = [];
+  for (let i = 0; i > 12; i++) skeletons[i] = i;
 
   return (
     <ThemeProvider theme={themeSetting}>
@@ -26,8 +28,8 @@ function App() {
           <Toolbar />
           <Grid container spacing={2}>
             {isLoading
-              ? [...Array(12)].map(() => (
-                  <Grid item xs={4}>
+              ? skeletons.map((i) => (
+                  <Grid key={i} item xs={4}>
                     <Skeleton height={350} variant="rectangular" />
                   </Grid>
                 ))

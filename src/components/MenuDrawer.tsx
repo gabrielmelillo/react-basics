@@ -16,6 +16,8 @@ import useGenres from "../hooks/useGenres";
 function MenuDrawer() {
   const drawerWidth = 240;
   const { genres, isLoading } = useGenres();
+  const skeletons = [];
+  for (let i = 0; i < 12; i++) skeletons[i] = i;
 
   return (
     <Drawer
@@ -35,8 +37,8 @@ function MenuDrawer() {
           <ListSubheader>Genres</ListSubheader>
           {isLoading ? (
             <>
-              {[...Array(20)].map(() => (
-                <ListItem disablePadding>
+              {skeletons.map((i) => (
+                <ListItem key={i} disablePadding>
                   <ListItemButton disabled>
                     <Skeleton
                       width={40}

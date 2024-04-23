@@ -60,9 +60,9 @@ function GameCard({ game }: Props) {
             spacing={1}
             sx={{ opacity: 0.3 }}
           >
-            {game.parent_platforms.map(({ platform }) => {
-              return iconMap[platform.slug];
-            })}
+            {game.parent_platforms.map(({ platform }) => (
+              <div key={platform.id}>{iconMap[platform.slug]}</div>
+            ))}
           </Stack>
           <Chip
             label={game.metacritic}
