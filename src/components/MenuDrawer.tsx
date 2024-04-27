@@ -12,8 +12,13 @@ import {
   Toolbar,
 } from "@mui/material";
 import useGenres from "../hooks/useGenres";
+import { Genre } from "../services/genre-service";
 
-function MenuDrawer() {
+interface Props {
+  handleSelectedGenre: (genre: Genre) => void;
+}
+
+function MenuDrawer({ handleSelectedGenre }: Props) {
   const drawerWidth = 240;
   const { genres, isLoading } = useGenres();
   const skeletons = [];
@@ -57,7 +62,7 @@ function MenuDrawer() {
             <>
               {genres.map((genre) => (
                 <ListItem key={genre.name} disablePadding>
-                  <ListItemButton>
+                  <ListItemButton onClick={() => handleSelectedGenre(genre)}>
                     <ListItemAvatar>
                       <Avatar src={genre.image_background}></Avatar>
                     </ListItemAvatar>
