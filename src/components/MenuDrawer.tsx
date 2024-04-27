@@ -15,11 +15,11 @@ import useGenres from "../hooks/useGenres";
 import { Genre } from "../services/genre-service";
 
 interface Props {
-  handleSelectedGenre: (genre: Genre) => void;
+  onSelectedGenre: (genre: Genre) => void;
   selectedGenre: Genre | null;
 }
 
-function MenuDrawer({ handleSelectedGenre, selectedGenre }: Props) {
+function MenuDrawer({ onSelectedGenre, selectedGenre }: Props) {
   const drawerWidth = 240;
   const { genres, isLoading } = useGenres();
   const skeletons = [];
@@ -65,7 +65,7 @@ function MenuDrawer({ handleSelectedGenre, selectedGenre }: Props) {
                 <ListItem key={genre.name} disablePadding>
                   <ListItemButton
                     selected={selectedGenre == genre}
-                    onClick={() => handleSelectedGenre(genre)}
+                    onClick={() => onSelectedGenre(genre)}
                   >
                     <ListItemAvatar>
                       <Avatar src={genre.image_background}></Avatar>

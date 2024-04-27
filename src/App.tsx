@@ -27,7 +27,7 @@ export function App() {
         <CssBaseline />
         <NavBar themeHandler={handleTheme} />
         <MenuDrawer
-          handleSelectedGenre={(genre) => setSelectedGenre(genre)}
+          onSelectedGenre={(genre) => setSelectedGenre(genre)}
           selectedGenre={selectedGenre}
         />
         <Box
@@ -41,7 +41,7 @@ export function App() {
             {selectedGenre?.name || "Top"} Games
           </Typography>
           <PlatformSelector
-            handleSelectedPlatform={(platform) => setSelectedPlatform(platform)}
+            onSelectedPlatform={(platform) => setSelectedPlatform(platform)}
           />
           <GameGrid
             selectedGenre={selectedGenre}

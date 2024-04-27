@@ -3,10 +3,10 @@ import usePlatforms from "../hooks/usePlatforms";
 import { Platform } from "../services/platform-service";
 
 interface Props {
-  handleSelectedPlatform: (platform: Platform) => void;
+  onSelectedPlatform: (platform: Platform) => void;
 }
 
-function PlatformSelector({ handleSelectedPlatform }: Props) {
+function PlatformSelector({ onSelectedPlatform }: Props) {
   const { platforms } = usePlatforms();
 
   return (
@@ -17,7 +17,7 @@ function PlatformSelector({ handleSelectedPlatform }: Props) {
           <MenuItem
             key={platform.id}
             value={platform.slug}
-            onClick={() => handleSelectedPlatform(platform)}
+            onClick={() => onSelectedPlatform(platform)}
           >
             {platform.name}
           </MenuItem>
