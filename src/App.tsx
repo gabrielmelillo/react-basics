@@ -1,10 +1,6 @@
 import {
   Box,
   CssBaseline,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
   ThemeProvider,
   Toolbar,
   Typography,
@@ -15,12 +11,11 @@ import useTheme from "./hooks/useTheme";
 import GameGrid from "./components/GameGrid";
 import { useState } from "react";
 import { Genre } from "./services/genre-service";
-import usePlatforms from "./hooks/usePlatforms";
 import { Platform } from "./services/platform-service";
+import PlatformSelector from "./components/PlatformSelector";
 
 export function App() {
   const { themeSetting, handleTheme } = useTheme();
-  const { platforms } = usePlatforms();
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
   const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
     null
@@ -45,19 +40,9 @@ export function App() {
           <Typography variant="h3" marginBottom={5}>
             {selectedGenre?.name || "Top"} Games
           </Typography>
-          <FormControl sx={{ marginBottom: 5, minWidth: 150 }}>
-            <InputLabel id="platform-label">Platform</InputLabel>
-            <Select labelId="platform-label" label="Platform">
-              {platforms.map((platform) => (
-                <MenuItem
-                  value={platform.slug}
-                  onClick={() => setSelectedPlatform(platform)}
-                >
-                  {platform.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <PlatformSelector
+            handleSelectedPlatform={(platform) => setSelectedPlatform(platform)}
+          />
           <GameGrid
             selectedGenre={selectedGenre}
             selectedPlatform={selectedPlatform}
