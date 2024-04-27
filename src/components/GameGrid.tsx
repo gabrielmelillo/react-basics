@@ -2,13 +2,15 @@ import { Grid, Skeleton } from "@mui/material";
 import GameCard from "./GameCard";
 import useGames from "../hooks/useGames";
 import { Genre } from "../services/genre-service";
+import { Platform } from "../services/platform-service";
 
 interface Props {
   selectedGenre: Genre | null;
+  selectedPlatform: Platform | null;
 }
 
-function GameGrid({ selectedGenre }: Props) {
-  const { games, isLoading } = useGames(selectedGenre);
+function GameGrid({ selectedGenre, selectedPlatform }: Props) {
+  const { games, isLoading } = useGames(selectedGenre, selectedPlatform);
   const skeletons = [];
   for (let i = 0; i < 12; i++) skeletons[i] = i;
 

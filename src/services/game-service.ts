@@ -1,11 +1,6 @@
 import apiClient from "./api-client";
 import { Genre } from "./genre-service";
-
-interface Platform {
-  id: number;
-  name: string;
-  slug: string;
-}
+import { Platform } from "./platform-service";
 
 export interface Game {
   id: number;
@@ -25,9 +20,9 @@ interface ApiResponse {
 }
 
 class GameService {
-  getGames(genre: Genre | null) {
+  getGames(genre: Genre | null, platform: Platform | null) {
     return apiClient.get<ApiResponse>("/games", {
-      params: { genres: genre?.id },
+      params: { genres: genre?.id, parent_platforms: platform?.id },
     });
   }
 }
