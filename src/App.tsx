@@ -21,7 +21,10 @@ export function App() {
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <NavBar themeHandler={handleTheme} />
-        <MenuDrawer handleSelectedGenre={(genre) => setSelectedGenre(genre)} />
+        <MenuDrawer
+          handleSelectedGenre={(genre) => setSelectedGenre(genre)}
+          selectedGenre={selectedGenre}
+        />
         <Box
           component="main"
           maxWidth={1040}
