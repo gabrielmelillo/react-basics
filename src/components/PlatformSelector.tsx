@@ -3,7 +3,7 @@ import usePlatforms from "../hooks/usePlatforms";
 import { Platform } from "../services/platform-service";
 
 interface Props {
-  onSelectedPlatform: (platform: Platform) => void;
+  onSelectedPlatform: (platform: Platform | null) => void;
 }
 
 function PlatformSelector({ onSelectedPlatform }: Props) {
@@ -13,6 +13,13 @@ function PlatformSelector({ onSelectedPlatform }: Props) {
     <FormControl sx={{ marginBottom: 5, minWidth: 150 }}>
       <InputLabel id="platform-label">Platform</InputLabel>
       <Select labelId="platform-label" label="Platform">
+        <MenuItem
+          value="all"
+          defaultChecked
+          onClick={() => onSelectedPlatform(null)}
+        >
+          All Platforms
+        </MenuItem>
         {platforms.map((platform) => (
           <MenuItem
             key={platform.id}
