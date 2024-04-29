@@ -1,5 +1,5 @@
+import { GameQuery } from "../App";
 import apiClient from "./api-client";
-import { Genre } from "./genre-service";
 import { Platform } from "./platform-service";
 
 export interface Game {
@@ -20,9 +20,12 @@ interface ApiResponse {
 }
 
 class GameService {
-  getGames(genre: Genre | null, platform: Platform | null) {
+  getGames(gameQuery: GameQuery) {
     return apiClient.get<ApiResponse>("/games", {
-      params: { genres: genre?.id, parent_platforms: platform?.id },
+      params: {
+        genres: gameQuery.genre?.id,
+        parent_platforms: gameQuery.platform?.id,
+      },
     });
   }
 }

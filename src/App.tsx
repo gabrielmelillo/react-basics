@@ -14,12 +14,18 @@ import { Genre } from "./services/genre-service";
 import { Platform } from "./services/platform-service";
 import PlatformSelector from "./components/PlatformSelector";
 
+export interface GameQuery {
+  genre: Genre | null;
+  platform: Platform | null;
+}
+
 export function App() {
   const { themeSetting, handleTheme } = useTheme();
-  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
-  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
-    null
-  );
+
+  const [gameQuery, setGameQuery] = useState<GameQuery>({
+    genre: null,
+    platform: null,
+  });
 
   return (
     <ThemeProvider theme={themeSetting}>
@@ -27,8 +33,8 @@ export function App() {
         <CssBaseline />
         <NavBar themeHandler={handleTheme} />
         <MenuDrawer
-          onSelectedGenre={(genre) => setSelectedGenre(genre)}
-          selectedGenre={selectedGenre}
+          onSelectedGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
+          selectedGenre={gameQuery.genre}
         />
         <Box
           component="main"
@@ -38,15 +44,14 @@ export function App() {
         >
           <Toolbar />
           <Typography variant="h3" marginBottom={5}>
-            {selectedGenre?.name || "Top"} Games
+            {gameQuery.genre?.name || "Top"} Games
           </Typography>
           <PlatformSelector
-            onSelectedPlatform={(platform) => setSelectedPlatform(platform)}
+            onSelectedPlatform={(platform) =>
+              setGameQuery({ ...gameQuery, platform })
+            }
           />
-          <GameGrid
-            selectedGenre={selectedGenre}
-            selectedPlatform={selectedPlatform}
-          />
+          <GameGrid gameQuery={gameQuery} />
         </Box>
       </Box>
     </ThemeProvider>

@@ -1,12 +1,8 @@
 import { useEffect, useState } from "react";
 import gameService, { Game } from "../services/game-service";
-import { Genre } from "../services/genre-service";
-import { Platform } from "../services/platform-service";
+import { GameQuery } from "../App";
 
-const useGames = (
-  selectedGenre: Genre | null,
-  selectedPlatform: Platform | null
-) => {
+const useGames = (gameQuery: GameQuery) => {
   const [games, setGames] = useState<Game[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -14,7 +10,7 @@ const useGames = (
     setIsLoading(true);
 
     gameService
-      .getGames(selectedGenre, selectedPlatform)
+      .getGames(gameQuery)
       .then((res) => {
         setGames(res.data.results);
         setIsLoading(false);
@@ -23,7 +19,7 @@ const useGames = (
         console.log(err.message);
         setIsLoading(false);
       });
-  }, [selectedGenre, selectedPlatform]);
+  }, [gameQuery]);
 
   return { games, setGames, isLoading };
 };
