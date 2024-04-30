@@ -1,6 +1,7 @@
 import {
   Box,
   CssBaseline,
+  Stack,
   ThemeProvider,
   Toolbar,
   Typography,
@@ -13,10 +14,12 @@ import { useState } from "react";
 import { Genre } from "./services/genre-service";
 import { Platform } from "./services/platform-service";
 import PlatformSelector from "./components/PlatformSelector";
+import Sort, { SortOption } from "./components/Sort";
 
 export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
+  sort: SortOption | null;
 }
 
 export function App() {
@@ -25,6 +28,7 @@ export function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({
     genre: null,
     platform: null,
+    sort: null,
   });
 
   return (
@@ -46,11 +50,16 @@ export function App() {
           <Typography variant="h3" marginBottom={5}>
             {gameQuery.genre?.name || "Top"} Games
           </Typography>
-          <PlatformSelector
-            onSelectedPlatform={(platform) =>
-              setGameQuery({ ...gameQuery, platform })
-            }
-          />
+          <Stack direction="row" spacing={2} sx={{ marginBottom: 3 }}>
+            <PlatformSelector
+              onSelectedPlatform={(platform) =>
+                setGameQuery({ ...gameQuery, platform })
+              }
+            />
+            <Sort
+              onSelectedSort={(sort) => setGameQuery({ ...gameQuery, sort })}
+            />
+          </Stack>
           <GameGrid gameQuery={gameQuery} />
         </Box>
       </Box>

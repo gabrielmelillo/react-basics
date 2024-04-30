@@ -10,7 +10,7 @@ function PlatformSelector({ onSelectedPlatform }: Props) {
   const { platforms } = usePlatforms();
 
   return (
-    <FormControl sx={{ marginBottom: 5, minWidth: 150 }}>
+    <FormControl sx={{ minWidth: 150 }}>
       <InputLabel id="platform-label">Platform</InputLabel>
       <Select labelId="platform-label" label="Platform">
         <MenuItem

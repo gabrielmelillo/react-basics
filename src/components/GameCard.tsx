@@ -22,11 +22,14 @@ interface Props {
 }
 
 function GameCard({ game }: Props) {
-  const index = game.background_image.indexOf("/games");
+  const target = "media/";
+  const index = game.background_image?.indexOf(target) + target.length;
   const imgURL =
-    game.background_image.slice(0, index) +
-    "/crop/600/400" +
-    game.background_image.slice(index);
+    game.background_image == undefined
+      ? "https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg"
+      : game.background_image?.slice(0, index) +
+        "crop/600/400/" +
+        game.background_image?.slice(index);
 
   const iconMap: { [key: string]: JSX.Element } = {
     pc: <FaWindows />,
