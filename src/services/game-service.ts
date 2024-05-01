@@ -26,6 +26,7 @@ class GameService {
         genres: gameQuery.genre?.id,
         parent_platforms: gameQuery.platform?.id,
         ordering: gameQuery.sort?.id,
+        search: gameQuery.search,
       },
     });
   }

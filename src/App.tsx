@@ -20,6 +20,7 @@ export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
   sort: SortOption | null;
+  search: string | null;
 }
 
 export function App() {
@@ -29,13 +30,17 @@ export function App() {
     genre: null,
     platform: null,
     sort: null,
+    search: null,
   });
 
   return (
     <ThemeProvider theme={themeSetting}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <NavBar themeHandler={handleTheme} />
+        <NavBar
+          themeHandler={handleTheme}
+          onSearch={(search) => setGameQuery({ ...gameQuery, search })}
+        />
         <MenuDrawer
           onSelectedGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
           selectedGenre={gameQuery.genre}
